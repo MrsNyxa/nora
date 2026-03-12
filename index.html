@@ -1,0 +1,127 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Nora</title>
+
+<style>
+
+body{
+background:#0f172a;
+color:white;
+font-family:Arial;
+text-align:center;
+margin-top:120px;
+overflow:hidden;
+}
+
+button{
+padding:12px 25px;
+font-size:18px;
+margin:10px;
+border:none;
+border-radius:10px;
+cursor:pointer;
+}
+
+#yes{
+background:#22c55e;
+color:white;
+}
+
+#no{
+background:#ef4444;
+color:white;
+}
+
+.heart{
+position:absolute;
+color:#60a5fa;
+font-size:24px;
+animation:float 6s linear infinite;
+}
+
+@keyframes float{
+0%{transform:translateY(100vh);opacity:1;}
+100%{transform:translateY(-10vh);opacity:0;}
+}
+
+.angry{
+font-size:120px;
+}
+
+</style>
+</head>
+
+<body>
+
+<h1 id="text">Aşkım beğendin mi?</h1>
+
+<div id="buttons">
+<button id="yes">EVET</button>
+<button id="no">HAYIR</button>
+</div>
+
+<audio autoplay loop>
+<source src="https://cdn.pixabay.com/download/audio/2022/03/15/audio_2c8e6bb5a7.mp3" type="audio/mp3">
+</audio>
+
+<script>
+
+function spawnHeart(){
+let heart=document.createElement("div");
+heart.className="heart";
+heart.innerHTML="💙";
+heart.style.left=Math.random()*100+"vw";
+heart.style.fontSize=(20+Math.random()*30)+"px";
+document.body.appendChild(heart);
+
+setTimeout(()=>{heart.remove()},6000);
+}
+
+setInterval(spawnHeart,300);
+
+let stage=1;
+
+document.getElementById("yes").onclick=function(){
+
+if(stage===1){
+
+document.getElementById("text").innerHTML="Seni çok seviyorum ❤️<br><br>Sende beni seviyor musun?";
+
+stage=2;
+
+}else if(stage===2){
+
+document.body.innerHTML="<h1>Teşekkür ederimmm YUPIIEEE 🎉💙</h1>";
+
+}
+
+}
+
+document.getElementById("no").onclick=function(){
+
+if(stage===1){
+
+document.getElementById("text").innerHTML="Ya üzülürüm ama senin için uğraştım...<br>Lütfen EVET'e bas 🥺";
+
+document.getElementById("no").style.display="none";
+
+}else{
+
+let angry="";
+
+for(let i=0;i<20;i++){
+angry+="😡";
+}
+
+document.body.innerHTML="<div class='angry'>"+angry+"</div><h1>EVETE BAS 😡</h1>";
+
+}
+
+}
+
+</script>
+
+</body>
+</html>
