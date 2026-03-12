@@ -2,42 +2,46 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>Nora</title>
+<title>Alfred</title>
 
 <style>
 
 body{
-background:#0f172a;
-color:white;
+background:#ffb6d9;
 font-family:Arial;
 text-align:center;
 margin-top:120px;
 overflow:hidden;
+color:#5a0033;
+}
+
+h1{
+font-size:40px;
 }
 
 button{
 padding:12px 25px;
-font-size:18px;
-margin:10px;
+font-size:20px;
+margin:15px;
 border:none;
-border-radius:10px;
+border-radius:12px;
 cursor:pointer;
 }
 
 #yes{
-background:#22c55e;
+background:#ff4da6;
 color:white;
 }
 
 #no{
-background:#ef4444;
+background:#888;
 color:white;
+position:relative;
 }
 
 .heart{
 position:absolute;
-color:#60a5fa;
-font-size:24px;
+font-size:30px;
 animation:float 6s linear infinite;
 }
 
@@ -46,25 +50,17 @@ animation:float 6s linear infinite;
 100%{transform:translateY(-10vh);opacity:0;}
 }
 
-.angry{
-font-size:120px;
-}
-
 </style>
 </head>
 
 <body>
 
-<h1 id="text">Aşkım beğendin mi?</h1>
+<h1 id="text">Askim... sana küçük bir şey hazırladım 💙</h1>
 
 <div id="buttons">
 <button id="yes">EVET</button>
 <button id="no">HAYIR</button>
 </div>
-
-<audio autoplay loop>
-<source src="https://cdn.pixabay.com/download/audio/2022/03/15/audio_2c8e6bb5a7.mp3" type="audio/mp3">
-</audio>
 
 <script>
 
@@ -73,49 +69,76 @@ let heart=document.createElement("div");
 heart.className="heart";
 heart.innerHTML="💙";
 heart.style.left=Math.random()*100+"vw";
-heart.style.fontSize=(20+Math.random()*30)+"px";
 document.body.appendChild(heart);
 
 setTimeout(()=>{heart.remove()},6000);
 }
 
-setInterval(spawnHeart,300);
+setInterval(spawnHeart,400);
 
 let stage=1;
+let noAttempts=0;
 
 document.getElementById("yes").onclick=function(){
 
 if(stage===1){
 
-document.getElementById("text").innerHTML="Seni çok seviyorum ❤️<br><br>Sende beni seviyor musun?";
+document.getElementById("text").innerHTML=
+"Seni gerçekten çok seviyorum... 💙<br><br>" +
+"Belki bu küçük site saçma gelebilir ama senin için yaptım. Umarım beğenirsin. <br><br>" +
+"Sende beni seviyor musun?";
 
 stage=2;
 
 }else if(stage===2){
 
-document.body.innerHTML="<h1>Teşekkür ederimmm YUPIIEEE 🎉💙</h1>";
+document.getElementById("text").innerHTML=
+"Gerçekten mi? 🥺<br><br>" +
+"Bunu duyduğuma çok sevindim...<br><br>" +
+"Son bir şey soracağım...<br><br>" +
+"Benimle kalmaya devam edecek misin?";
 
-}
-
-}
-
-document.getElementById("no").onclick=function(){
-
-if(stage===1){
-
-document.getElementById("text").innerHTML="Ya üzülürüm ama senin için uğraştım...<br>Lütfen EVET'e bas 🥺";
-
-document.getElementById("no").style.display="none";
+stage=3;
 
 }else{
 
-let angry="";
+document.body.innerHTML=
+"<h1>TEŞEKKÜR EDERİM ASKİM </h1>"+
+"<h2>Beni dünyanın en mutlu eniği yaptın 🥹</h2>";
 
-for(let i=0;i<20;i++){
-angry+="😡";
 }
 
-document.body.innerHTML="<div class='angry'>"+angry+"</div><h1>EVETE BAS 😡</h1>";
+}
+
+let noButton=document.getElementById("no");
+
+noButton.onmouseover=function(){
+
+if(noAttempts<3){
+
+let x=Math.random()*window.innerWidth-100;
+let y=Math.random()*window.innerHeight-50;
+
+noButton.style.position="absolute";
+noButton.style.left=x+"px";
+noButton.style.top=y+"px";
+
+}
+
+}
+
+noButton.onclick=function(){
+
+noAttempts++;
+
+if(noAttempts>=4){
+
+document.getElementById("text").innerHTML=
+"Ya üzülürüm ama...<br><br>" +
+"Bu siteyi senin için yaptım tüm gece uğraştım.<br><br>" +
+"Lütfen EVET'e bas... ";
+
+noButton.style.display="none";
 
 }
 
