@@ -79,6 +79,14 @@ setInterval(spawnHeart,400);
 let stage=1;
 let noAttempts=0;
 
+let noButton=document.getElementById("no");
+
+function resetNoButton(){
+noButton.style.position="relative";
+noButton.style.left="0px";
+noButton.style.top="0px";
+}
+
 document.getElementById("yes").onclick=function(){
 
 if(stage===1){
@@ -88,6 +96,7 @@ document.getElementById("text").innerHTML=
 "Belki bu küçük site saçma gelebilir ama senin için yaptım. Umarım beğenirsin. <br><br>" +
 "Sende beni seviyor musun?";
 
+resetNoButton();
 stage=2;
 
 }else if(stage===2){
@@ -98,19 +107,20 @@ document.getElementById("text").innerHTML=
 "Son bir şey soracağım...<br><br>" +
 "Benimle kalmaya devam edecek misin?";
 
+resetNoButton();
 stage=3;
 
 }else{
 
 document.body.innerHTML=
-"<h1>TEŞEKKÜR EDERİM ASKİM </h1>"+
-"<h2>Beni dünyanın en mutlu eniği yaptın 🥹</h2>";
+"<h1>TEŞEKKÜR EDERİM ASKİM</h1>"+
+"<h2>Beni dünyanın en mutlu eniği yaptın 🥹</h2>"+
+"<br><br>"+
+"<img src='https://media.tenor.com/9q3E3V9n7qkAAAAi/cat-kiss.gif' width='220'>";
 
 }
 
 }
-
-let noButton=document.getElementById("no");
 
 noButton.onmouseover=function(){
 
